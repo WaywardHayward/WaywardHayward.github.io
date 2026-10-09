@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alex Hayward — Principal Software Engineer</title>
+<meta name="description" content="Alex Hayward — Principal Software Engineer at Microsoft. AI agents, Industrial IoT, digital twins, robotics and 3D visualisation.">
+<meta property="og:title" content="Alex Hayward — Principal Software Engineer">
+<meta property="og:description" content="I design systems that scale and build things that ship — then go home and make a hexapod robot dance.">
+<meta property="og:url" content="https://waywardhayward.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌘</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --border: #30363d; --text: #c9d1d9;
+    --muted: #8b949e; --accent: #58a6ff; --green: #3fb950; --amber: #d29922;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    --sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 var(--sans); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(13,17,23,.85); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+  nav .brand { font-family: var(--mono); color: var(--text); font-weight: 600; }
+  nav .brand span { color: var(--green); }
+  nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; font-size: 14px; }
+  nav ul a { color: var(--muted); }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+
+  header.hero { padding: 96px 0 72px; }
+  .prompt { font-family: var(--mono); color: var(--green); font-size: 15px; }
+  .prompt .cursor { display: inline-block; width: 9px; height: 1.1em; background: var(--green); vertical-align: text-bottom; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  h1 { font-size: clamp(40px, 7vw, 68px); line-height: 1.05; margin: 16px 0 8px; font-weight: 800; color: #f0f6fc; letter-spacing: -0.02em; }
+  .role { font-family: var(--mono); color: var(--accent); font-size: clamp(16px, 2.4vw, 20px); margin: 0 0 24px; }
+  .tagline { max-width: 640px; font-size: 19px; color: var(--text); margin: 0 0 32px; }
+  .links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 14px; font-weight: 600; background: var(--panel); }
+  .btn:hover { border-color: var(--accent); text-decoration: none; }
+  .btn.primary { background: var(--accent); color: #0d1117; border-color: var(--accent); }
+  .btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+  section { padding: 56px 0; border-top: 1px solid var(--border); }
+  h2 { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--muted); margin: 0 0 24px; }
+  h2::before { content: "$ "; color: var(--green); }
+  h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 32px 0 14px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; color: var(--text); transition: border-color .15s, transform .15s; }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
+  .card h4 { margin: 0 0 6px; font-size: 17px; color: #f0f6fc; }
+  .card p { margin: 0 0 16px; color: var(--muted); font-size: 14px; flex: 1; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .tag { border: 1px solid var(--border); border-radius: 99px; padding: 2px 10px; }
+  .star { color: var(--amber); }
+  .card .actions { display: flex; gap: 14px; margin-top: 12px; font-size: 13px; font-weight: 600; }
+
+  .term { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-family: var(--mono); font-size: 14px; }
+  .term .bar { display: flex; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .term .bar i { width: 11px; height: 11px; border-radius: 50%; background: #484f58; }
+  .term pre { margin: 0; padding: 18px 20px; overflow-x: auto; line-height: 1.75; color: var(--text); }
+  .term .hl { color: var(--accent); }
+  .term .g { color: var(--green); }
+  .term .m { color: var(--muted); }
+
+  @media (max-width: 780px) { nav ul { display: none; } header.hero { padding: 64px 0 48px; } }
+
+  .talks { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .talk { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; color: var(--text); }
+  .talk:hover { border-color: var(--accent); text-decoration: none; }
+  .talk img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+  .talk div { padding: 12px 16px; font-weight: 600; }
+  .talk small { display: block; color: var(--muted); font-weight: 400; }
+
+  .motd { font-size: 18px; max-width: 720px; }
+  .motd p { margin: 0 0 12px; }
+
+  footer { border-top: 1px solid var(--border); padding: 40px 0 56px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer b { color: var(--text); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#"><span>~/</span>waywardhayward</a>
+    <ul>
+      <li><a href="#live">Live</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#talks">Talks</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="prompt">$ whoami <span class="cursor"></span></div>
+    <h1>Alex Hayward</h1>
+    <p class="role">Principal Software Engineer @ Microsoft · Edinburgh</p>
+    <p class="tagline">Systems thinker. Problem solver. I design systems that scale and build things that ship — then go home and make a hexapod robot dance.</p>
+    <div class="links">
+      <a class="btn primary" href="https://github.com/WaywardHayward">
+        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.530 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.530-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+      <a class="btn" href="https://www.linkedin.com/in/haywardalex/">
+        <svg viewBox="0 0 16 16"><path d="M0 1.15C0 .52.52 0 1.15 0h13.7C15.48 0 16 .52 16 1.15v13.7c0 .63-.52 1.15-1.15 1.15H1.15C.52 16 0 15.48 0 14.85V1.15zM4.75 13.5V6.25H2.35v7.25h2.4zM3.55 5.25c.84 0 1.36-.56 1.36-1.25-.02-.71-.52-1.250-1.34-1.25-.82 0-1.36.54-1.36 1.25 0 .69.52 1.25 1.33 1.25h.01zM13.65 13.5V9.34c0-2.22-1.19-3.26-2.77-3.26-1.28 0-1.85.7-2.17 1.2V6.25h-2.4c.03.68 0 7.25 0 7.25h2.4V9.45c0-.22.02-.43.08-.59.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.63v3.89h2.41z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</header>
+
+<section id="now">
+  <div class="wrap">
+    <h2>ps aux</h2>
+    <div class="term">
+      <div class="bar"><i></i><i></i><i></i></div>
+<pre><span class="m">USER   PID   CPU%   DESCRIPTION</span>
+alex   001   <span class="g">████</span>   AI agents &amp; Copilot experiences
+alex   002   <span class="g">███ </span>   Game prototypes (orbital mechanics)
+alex   003   <span class="g">██  </span>   ADS-B decoder — aircraft tracking via SDR
+alex   004   <span class="g">██  </span>   Hexapod robot control system
+alex   005   <span class="g">█   </span>   Home automation — LED alerts on flyovers</pre>
+    </div>
+  </div>
+</section>
+
+<section id="live">
+  <div class="wrap">
+    <h2>open ./live-demos</h2>
+    <div class="grid">
+      <div class="card">
+        <h4>Piano Tracker</h4>
+        <p>Strava for piano practice. Plug in a MIDI keyboard and track sessions and progress over time.</p>
+        <div class="meta"><span class="tag">TypeScript</span><span class="tag">Web MIDI</span></div>
+        <div class="actions"><a href="https://waywardhayward.github.io/piano-tracker/">Launch ↗</a><a href="https://github.com/WaywardHayward/piano-tracker">Source</a></div>
+      </div>
+      <div class="card">
+        <h4>Spaceship Generator</h4>
+        <p>Procedural, seed-based starship deck plans from layered Simplex noise. No AI, pure maths — built for tabletop RPGs.</p>
+        <div class="meta"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Procedural</span></div>
+        <div class="actions"><a href="https://waywardhayward.github.io/spaceship-generator/">Launch ↗</a><a href="https://github.com/WaywardHayward/spaceship-generator">Source</a></div>
+      </div>
+      <div class="card">
+        <h4>Wayward UI</h4>
+        <p>The shared React + Tailwind component library behind my side projects, with a live component showcase.</p>
+        <div class="meta"><span class="tag">React</span><span class="tag">Tailwind</span></div>
+        <div class="actions"><a href="https://waywardhayward.github.io/wayward-ui/">Launch ↗</a><a href="https://github.com/WaywardHayward/wayward-ui">Source</a></div>
+      </div>
+      <div class="card">
+        <h4>Safety Assistant Prototype</h4>
+        <p>Clickable prototype of an AI-assisted safety dashboard — alerts, briefings, reports and an incident database, annotated with design intent.</p>
+        <div class="meta"><span class="tag">HTML</span><span class="tag">UX prototype</span></div>
+        <div class="actions"><a href="https://waywardhayward.github.io/safety_assistant.github.io/">Launch ↗</a><a href="https://github.com/WaywardHayward/safety_assistant.github.io">Source</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>ls ~/projects</h2>
+
+    <h3>AI &amp; agents</h3>
+    <div class="grid">
+      <a class="card" href="https://github.com/WaywardHayward/autogen-studio-dockerfile">
+        <h4>autogen-studio-dockerfile</h4>
+        <p>A Dockerfile for running Microsoft AutoGen Studio in a container.</p>
+        <div class="meta"><span class="star">★ 57</span><span class="tag">Docker</span></div>
+      </a>
+      <a class="card" href="https://github.com/WaywardHayward/mcp-bridge">
+        <h4>mcp-bridge</h4>
+        <p>A .NET REST API bridging to any MCP server over stdio or SSE, with multi-server support and SQLite invocation logging.</p>
+        <div class="meta"><span class="tag">C#</span><span class="tag">MCP</span></div>
+      </a>
+      <a class="card" href="https://github.com/WaywardHayward/looking-glass">
+        <h4>looking-glass</h4>
+        <p>A GitHub Action for visual PR review: Playwright screenshots graded against a design rubric by a multimodal LLM.</p>
+        <div class="meta"><span class="tag">GitHub Action</span><span class="tag">Playwright</span><span class="tag">LLM</span></div>
+      </a>
+      <a class="card" href="https://github.com/WaywardHayward/ai-detector">
+        <h4>ai-detector</h4>
+        <p>Edge/Chrome extension that flags likely AI-generated content using linguistic heuristics.</p>
+        <div class="meta"><span class="tag">TypeScript</span><span class="tag">Browser extension</span></div>
+      </a>
+      <a class="card" href="https://github.com/WaywardHayward/house-match">
+        <h4>house-match</h4>
+        <p>Swipe like/dislike on houses to train a personalised property recommendation model.</p>
+        <div class="meta"><span class="tag">React</span><span class="tag">.NET</span><span class="tag">ML</span></div>
+      </a>
+    </div>
+
+    <h3>Robotics &amp; hardware</h3>
+    <div class="grid">
+      <a class="card" href="https://github.com/WaywardHayward/freenove-hexapod-dotnet-api">
+        <h4>freenove-hexapod-dotnet-api</h4>
+        <p>A .NET REST API for controlling the Freenove hexapod robot on a Raspberry Pi.</p>
+        <div class="meta"><span class="tag">C#</span><span class="tag">Raspberry Pi</span></div>
+      </a>
+      <a class="card" href="https://github.com/WaywardHayward/blinkt-api-dotnet">
+        <h4>blinkt-api-dotnet</h4>
+        <p>ASP.NET Core minimal API driving a Pimoroni Blinkt LED strip, with a JSON animation engine.</p>
+        <div class="meta"><span class="tag">C#</span><span class="tag">GPIO / SPI</span></div>
+      </a>
+      <a class="card" href="https://github.com/WaywardHayward/rPiAccel">
+        <h4>rPiAccel &amp; rPiMotor</h4>
+        <p>.NET on the Pi: reading an MPU6050 accelerometer and driving a stepper motor over GPIO.</p>
+        <div class="meta"><span class="tag">C#</span><span class="tag">Raspberry Pi</span></div>
+      </a>
+    </div>
+
+    <h3>Industrial IoT, digital twins &amp; space</h3>
+    <div class="grid">
+      <a class="card" href="https://github.com/WaywardHayward/iss_azure_data_adapter">
+        <h4>iss_azure_data_adapter</h4>
+        <p>Streams live telemetry from the International Space Station's Lightstreamer feed into Azure Event Hubs or IoT Hub.</p>
+        <div class="meta"><span class="tag">C#</span><span class="tag">Azure IoT</span></div>
+      </a>
+      <a class="card" href="https://github.com/WaywardHayward/vscode-ext-adt-model-manager">
+        <h4>vscode-ext-adt-model-manager</h4>
+        <p>A VS Code extension for authoring and editing DTDL v2 models for Azure Digital Twins.</p>
+        <div class="meta"><span class="tag">TypeScript</span><span class="tag">VS Code</span></div>
+      </a>
+      <a class="card" href="https://github.com/WaywardHayward/adt-auto-ingestor">
+        <h4>adt-auto-ingestor</h4>
+        <p>An Azure Function that auto-ingests Event Hub data into Azure Digital Twins.</p>
+        <div class="meta"><span class="tag">C#</span><span class="tag">Azure Functions</span></div>
+      </a>
+      <a class="card" href="https://github.com/WaywardHayward/adt-signalr-broadcaster">
+        <h4>adt-signalr-broadcaster</h4>
+        <p>Forwards Azure Digital Twins property patches to SignalR for real-time UIs.</p>
+        <div class="meta"><span class="tag">C#</span><span class="tag">SignalR</span></div>
+      </a>
+      <a class="card" href="https://github.com/WaywardHayward/ndvi-generator">
+        <h4>ndvi-generator</h4>
+        <p>Generates NDVI vegetation images from spectral band 3 and band 4 bitmaps.</p>
+        <div class="meta"><span class="tag">C#</span><span class="tag">Remote sensing</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="talks">
+  <div class="wrap">
+    <h2>ls ~/talks</h2>
+    <div class="talks">
+      <a class="talk" href="https://www.youtube.com/watch?v=E3tEuvqQ6Jw">
+        <img src="https://img.youtube.com/vi/E3tEuvqQ6Jw/hqdefault.jpg" alt="The IoT Show" loading="lazy">
+        <div>The IoT Show<small>Microsoft · YouTube</small></div>
+      </a>
+      <a class="talk" href="https://www.youtube.com/watch?v=NmfJJaN5uEE">
+        <img src="https://img.youtube.com/vi/NmfJJaN5uEE/hqdefault.jpg" alt="NVIDIA GTC" loading="lazy">
+        <div>NVIDIA GTC<small>Conference talk · YouTube</small></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="career">
+  <div class="wrap">
+    <h2>git log career</h2>
+    <div class="term">
+      <div class="bar"><i></i><i></i><i></i></div>
+<pre><span class="hl">2025</span>  AI agents, Copilot experiences, Construction, Milk, and Robotics
+<span class="hl">2023</span>  Microsoft Fabric, data platforms, Agentic Systems
+<span class="hl">2021</span>  Azure Digital Twins, The IoT Show, NVIDIA GTC, The International Space Station
+<span class="hl">2019</span>  Azure IoT, edge computing, digital factories, AI based closed loop control
+<span class="hl">2013</span>  Mobile apps, IoT, OPC integration, operations logbooks
+<span class="hl">2010</span>  .NET enterprise systems, SOA
+<span class="hl">2007</span>  <span class="m">Initial commit</span></pre>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2>cat /etc/motd</h2>
+    <div class="motd">
+      <p>Sometimes the best engineering happens when you're not engineering.</p>
+      <p>I run along the Scottish coast and countryside. I'm learning piano (slowly). I paint (badly :p). The problems you solve away from the keyboard often unlock the ones at it.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span><b>I build things that ship and things that shouldn't exist.</b></span>
+    <span><a href="https://github.com/WaywardHayward">GitHub</a> · <a href="https://www.linkedin.com/in/haywardalex/">LinkedIn</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
